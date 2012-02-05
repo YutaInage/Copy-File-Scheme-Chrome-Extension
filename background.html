@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+chrome.extension.onRequest.addListener(
+  function(request, sender, sendResponse) {
+    var element = document.getElementById("text_field");
+    element.value = request.path;
+    element.focus();
+    element.select();
+    document.execCommand("copy");
+    sendResponse({});
+    element.value = "";
+  }
+);
+</script>
+</head>
+  <body>
+    <input type="text" id="text_field" value="">
+  </body>
+<html>
