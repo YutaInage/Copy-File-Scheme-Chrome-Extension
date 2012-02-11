@@ -1,7 +1,7 @@
 {
   "name": "Copy File Scheme",
   "version": "0.1",
-  "description": "copy file scheme to clipbord.",
+  "description": "copy file scheme to clipboard.",
   "background_page": "background.html",
   "browser_action": {
     "default_title": "Copy File Scheme"

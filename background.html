@@ -2,17 +2,36 @@
 <html>
 <head>
 <script type="text/javascript">
+
+function copyToClipboard(in_str) {
+  var element = document.getElementById("text_field");
+
+  element.value = in_str;
+  element.focus();
+  element.select();
+  document.execCommand("copy");
+  element.value = "";
+}
+
+function translateUrlToPath(in_url){
+  var filePath = in_url.substr(5); // 5 is length of "file:".
+
+  filePath = filePath.replace("///", "");
+  filePath = filePath.replace(/\//g, "\\");
+
+  return filePath;
+}
+
 chrome.extension.onRequest.addListener(
   function(request, sender, sendResponse) {
-    var element = document.getElementById("text_field");
-    element.value = request.path;
-    element.focus();
-    element.select();
-    document.execCommand("copy");
+    console.log(request.url);
+    var filePath = translateUrlToPath(request.url);
+
+    copyToClipboard(filePath);
     sendResponse({});
-    element.value = "";
   }
 );
+
 </script>
 </head>
   <body>
